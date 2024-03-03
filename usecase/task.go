@@ -8,8 +8,17 @@ import (
 	"gorm.io/gorm"
 )
 
-func (h TaskHandler) ListTasks(ctx context.Context) (tasks []entity.Task, err error) {
-	return h.db.ListTasks()
+func (h TaskHandler) ListTasks(ctx context.Context, param entity.ListTaskParam) (tasks []entity.Task, count int64, err error) {
+	if tasks, err = h.db.ListTasks(param); err != nil {
+		return tasks, 0, errors.Wrap(err, "list task")
+	}
+
+	count, err = h.db.GetTasksCount()
+	if err != nil {
+		return nil, 0, errors.Wrap(err, "count tasks")
+	}
+
+	return
 }
 
 func (h TaskHandler) GetTask(ctx context.Context, id uint) (task entity.Task, err error) {

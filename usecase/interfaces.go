@@ -15,7 +15,7 @@ type (
 
 type (
 	Task interface {
-		ListTasks(ctx context.Context) (tasks []entity.Task, err error)
+		ListTasks(ctx context.Context, param entity.ListTaskParam) (tasks []entity.Task, count int64, err error)
 		GetTask(ctx context.Context, id uint) (task entity.Task, err error)
 		CreateTask(ctx context.Context, t entity.Task) (entity.Task, error)
 		UpdateTask(ctx context.Context, id uint, t entity.Task) (entity.Task, error)

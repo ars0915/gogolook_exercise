@@ -13,13 +13,20 @@ import (
 func (rH *HttpHandler) ListTasksHandler(c *gin.Context) {
 	ctx := cGin.NewContext(c)
 
-	data, err := rH.h.ListTasks(ctx)
+	page := ctx.GetPaginator()
+	param := entity.ListTaskParam{
+		Offset: &page.Offset,
+		Limit:  &page.Limit,
+	}
+
+	data, count, err := rH.h.ListTasks(ctx, param)
 	if err != nil {
 		ctx.WithError(err).Response(http.StatusInternalServerError, "List Tasks Failed")
 		return
 	}
+	page.SetTotalCount(int(count))
 
-	ctx.WithData(data).Response(http.StatusOK, "")
+	ctx.WithPaginator(page).WithData(data).Response(http.StatusOK, "")
 }
 
 type createTaskBody struct {

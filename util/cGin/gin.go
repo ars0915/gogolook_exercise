@@ -76,7 +76,7 @@ func (cGinFun HandlerFunc) GinFunc() gin.HandlerFunc {
 
 func (c *Context) GetPaginator() paging.Paginator {
 	var (
-		page  = paging.DefaultLimit
+		page  = paging.DefaultPage
 		limit = paging.DefaultLimit
 		err   error
 	)
@@ -84,7 +84,7 @@ func (c *Context) GetPaginator() paging.Paginator {
 	if pageOK {
 		page, err = strconv.Atoi(pageStr)
 		if err != nil || page <= 0 {
-			page = 1
+			page = paging.DefaultPage
 		}
 	}
 

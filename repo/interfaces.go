@@ -16,7 +16,8 @@ type (
 		Commit() error
 		Rollback() error
 
-		ListTasks() (t []entity.Task, err error)
+		ListTasks(param entity.ListTaskParam) (t []entity.Task, err error)
+		GetTasksCount() (count int64, err error)
 		GetTask(id uint) (task entity.Task, err error)
 		CreateTask(t entity.Task) (entity.Task, error)
 		UpdateTask(id uint, t entity.Task) error
