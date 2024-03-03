@@ -110,7 +110,7 @@ func (c *Context) Response(httpCode int, msg string) {
 	if c.customError != nil {
 		c.wrap.Meta.Code = c.customError.Code
 		c.wrap.Meta.Message = c.customError.Message
-		return
+		httpCode = c.customError.HTTPCode
 	} else {
 		if c.code == 0 {
 			c.WithCode(httpCode)
