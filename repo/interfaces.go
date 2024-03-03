@@ -2,6 +2,8 @@ package repo
 
 import (
 	"context"
+
+	"github.com/ars0915/gogolook-exercise/entity"
 )
 
 type (
@@ -13,6 +15,12 @@ type (
 		Begin() App
 		Commit() error
 		Rollback() error
+
+		ListTasks() (t []entity.Task, err error)
+		GetTask(id uint) (task entity.Task, err error)
+		CreateTask(t entity.Task) (entity.Task, error)
+		UpdateTask(id uint, t entity.Task) error
+		DeleteTask(id uint) (err error)
 	}
 )
 

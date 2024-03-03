@@ -2,11 +2,9 @@ package cGin
 
 // CustomError custom error
 type CustomError struct {
-	HTTPCode    int
-	Code        int
-	Message     string
-	ErrorInfo   interface{}
-	DeclineCode string
+	HTTPCode int
+	Code     int
+	Message  string
 }
 
 func (cErr CustomError) Error() string {

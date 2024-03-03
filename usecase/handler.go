@@ -7,7 +7,7 @@ import (
 )
 
 type AppHandler struct {
-	// TODO: service interfaces
+	Task
 }
 
 type NewHandlerOption func(*AppHandler)
@@ -44,4 +44,16 @@ func WithinTransaction(ctx context.Context, s repo.App, tFunc func(ctx context.C
 	return nil
 }
 
-// TODO: define services and option function
+type TaskHandler struct {
+	db repo.App
+}
+
+func NewTaskHandler(db repo.App) *TaskHandler {
+	return &TaskHandler{
+		db: db,
+	}
+}
+
+func WithTask(i Task) func(h *AppHandler) {
+	return func(h *AppHandler) { h.Task = i }
+}
