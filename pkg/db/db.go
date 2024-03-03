@@ -8,5 +8,5 @@ import (
 )
 
 func NewDB(config config.ConfENV) (*gorm.DB, error) {
-	return gorm.Open(sqlite.Open("test.db"), &gorm.Config{})
+	return gorm.Open(sqlite.Open(config.SQLite.Database), &gorm.Config{})
 }

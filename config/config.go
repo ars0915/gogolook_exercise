@@ -20,8 +20,9 @@ var Conf ConfENV
 var once sync.Once
 
 type ConfENV struct {
-	Core SectionCore
-	Log  SectionLog
+	Core   SectionCore
+	Log    SectionLog
+	SQLite SectionSQLite
 }
 
 type SectionCore struct {
@@ -33,6 +34,10 @@ type SectionLog struct {
 	Format string
 	Output string
 	Level  string
+}
+
+type SectionSQLite struct {
+	Database string
 }
 
 func InitConf(confPath string) error {
@@ -87,6 +92,8 @@ func LoadConf(confPath string) (ConfENV, error) {
 	conf.Log.Format = viper.GetString("log_format")
 	conf.Log.Level = viper.GetString("log_level")
 	conf.Log.Output = viper.GetString("log_output")
+
+	conf.SQLite.Database = viper.GetString("sqlite_database")
 
 	return conf, nil
 }
