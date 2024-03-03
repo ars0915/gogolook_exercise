@@ -1,0 +1,18 @@
+*.exe
+
+# Test binary, build with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Customize
+.vscode
+.env*
+!.env.example
+!.env.test.example
+
+debug
+
+# Mock temp file
+mocks/gomock_reflect_*
