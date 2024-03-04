@@ -6,3 +6,6 @@ docker-build:
 
 docker-run:
 	docker run --name gogolook-exercise -d -p 8080:8080 gogolook-exercise
+
+tests:
+	go test -v  ./usecase/.
