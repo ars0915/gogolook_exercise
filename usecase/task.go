@@ -38,12 +38,12 @@ func (h TaskHandler) CreateTask(ctx context.Context, t entity.Task) (entity.Task
 
 func (h TaskHandler) UpdateTask(ctx context.Context, id uint, t entity.Task) (entity.Task, error) {
 	if err := h.db.UpdateTask(id, t); err != nil {
-		return entity.Task{}, err
+		return entity.Task{}, errors.Wrap(err, "update task")
 	}
 
 	task, err := h.db.GetTask(id)
 	if err != nil {
-		return entity.Task{}, err
+		return entity.Task{}, errors.Wrap(err, "get task")
 	}
 
 	return task, nil
