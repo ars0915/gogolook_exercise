@@ -38,6 +38,7 @@ type SectionLog struct {
 
 type SectionSQLite struct {
 	Database string
+	MaxConn  int
 }
 
 func InitConf(confPath string) error {
@@ -94,6 +95,7 @@ func LoadConf(confPath string) (ConfENV, error) {
 	conf.Log.Output = viper.GetString("log_output")
 
 	conf.SQLite.Database = viper.GetString("sqlite_database")
+	conf.SQLite.MaxConn = viper.GetInt("sqlite_db_max_conn")
 
 	return conf, nil
 }
