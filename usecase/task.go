@@ -3,9 +3,10 @@ package usecase
 import (
 	"context"
 
-	"github.com/ars0915/gogolook-exercise/entity"
 	"github.com/pkg/errors"
 	"gorm.io/gorm"
+
+	"github.com/ars0915/gogolook-exercise/entity"
 )
 
 func (h TaskHandler) ListTasks(ctx context.Context, param entity.ListTaskParam) (tasks []entity.Task, count int64, err error) {
