@@ -6,6 +6,8 @@ import (
 	"github.com/ars0915/gogolook-exercise/entity"
 )
 
+//go:generate mockgen -destination=../mocks/repo/app_repo.go -package=mocks github.com/ars0915/gogolook-exercise/repo App
+
 type (
 	App interface {
 		Migrate()
